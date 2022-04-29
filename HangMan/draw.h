@@ -1,0 +1,1 @@
+void drawMan(int lives);

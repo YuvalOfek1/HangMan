@@ -1,5 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "HangMan.h"
+#include "draw.h"
+#include "gotoxy.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -9,99 +11,8 @@
 
 using namespace std;
 
-void gotoxy(int x, int y)
-{
-	COORD coord;
-	coord.X = x;
-	coord.Y = y;
-	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-}
-
-void intro()
-{
-	cout << "Welcome to HangMan\n";
-	system("pause");
-	system("cls");
-	cout << "\nIn this game you need to guess the letters of a random word.\nAny mistake will result in the addition of the man's body part (you have 6 lives in total)"<<endl;
-	cout << "\nWhen you guess a correct letter it will be added and will make you one step closer to the winning" << endl;
-	cout << "Are Your Ready ? ? ?" << endl;
-	system("pause");
-	system("cls");
-}
 
 
-void drawMan(int lives)
-{
-	if (lives == 6)
-	{
-		for (int i = 16; i > 6; i--)
-		{
-			gotoxy(49, i);
-			cout << "|";
-		}
-		gotoxy(49, 6);
-		cout << "|/";
-		gotoxy(49, 5);
-		cout << "| /";
-		gotoxy(48, 17);
-		cout << "___\n";
-		gotoxy(50, 4);
-		cout << "_________";
-		for (int i = 6; i >= 5; i--)
-		{
-			gotoxy(59, i);
-			cout << "|";
-		}
-		
-	}
-	if (lives == 5)
-	{
-		drawMan(6);
-		gotoxy(56, 7);
-		cout << "[ . . ]";
-		gotoxy(56, 8);
-		cout << "[  -  ]";
-	}
-	if (lives == 4)
-	{
-		drawMan(5);
-		for (int i = 11; i>= 9; i--)
-		{
-			gotoxy(59, i);
-			cout << "|";
-		}
-	}
-	if (lives == 3)
-	{
-		drawMan(4);
-		gotoxy(58, 10);
-		cout<<"/";
-		
-	}
-	if (lives == 2)
-	{
-		drawMan(3);
-		gotoxy(60, 10);
-		cout << "\\";
-	}
-	if (lives == 1)
-	{
-		drawMan(2);
-		gotoxy(58, 12);
-		cout << "/";
-		
-
-	}
-	if (lives == 0)
-	{
-		drawMan(1);
-		gotoxy(60, 12);
-		cout << "\\";
-		gotoxy(56, 7);
-		cout << "[ x x ]";
-	}
-
-}
 
 void Print_Hidded_Word(char word[], int found[])
 {
@@ -145,8 +56,8 @@ void start()
 		Print_Hidded_Word(word, found);
 		drawMan(lives);
 		if (!correct)
-			gotoxy(0, 1);
-		else gotoxy(0, 4);
+			gotoxy(0, 2);
+		else gotoxy(0, 3);
 		cout << "Try to guess a letter[>>] ";
 
 		cin >> letter;

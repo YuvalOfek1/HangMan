@@ -139,11 +139,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="draw.cpp" />
+    <ClCompile Include="gotoxy.cpp" />
     <ClCompile Include="HangMan.cpp" />
+    <ClCompile Include="intro.cpp" />
     <ClCompile Include="MainTrain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="draw.h" />
+    <ClInclude Include="gotoxy.h" />
     <ClInclude Include="HangMan.h" />
+    <ClInclude Include="intro.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include "HangMan.h"
+#include "intro.h"
 
 
 
