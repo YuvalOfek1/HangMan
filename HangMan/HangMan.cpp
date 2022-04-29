@@ -14,7 +14,7 @@ using namespace std;
 
 
 
-void Print_Hidded_Word(char word[], int found[])
+void Print_Hidden_Word(char word[], int found[])
 {
 	for (int i = 0; i < strlen(word); i++)
 	{
@@ -52,8 +52,8 @@ void start()
 	{
 		current = false;
 		same = false;
-		gotoxy(0, 3);
-		Print_Hidded_Word(word, found);
+		gotoxy(0, 4);
+		Print_Hidden_Word(word, found);
 		drawMan(lives);
 		if (!correct)
 			gotoxy(0, 2);
@@ -117,10 +117,13 @@ void start()
 		
 	}
 	if (lives)
+	{
 		cout << word << "\nCongrats!!! you found the word\n";
+		drawMan(lives);
+	}
 	else
 	{
-		cout << "Sorry, you lost! :(\nThe man has been executed, The word was " << word<<endl;
+		cout << "Sorry, you lost! :(\nThe man has been executed, The word was " << word << endl;
 		drawMan(lives);
 	}
 	gotoxy(0, 18);
