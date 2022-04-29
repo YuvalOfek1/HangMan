@@ -212,7 +212,7 @@ void start()
 		cout << "Sorry, you lost! :(\nThe man has been executed, The word was " << word<<endl;
 		drawMan(lives);
 	}
-	gotoxy(0, 18)
+	gotoxy(0, 18);
 }
 
 
