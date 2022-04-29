@@ -144,7 +144,9 @@ void start()
 		gotoxy(0, 3);
 		Print_Hidded_Word(word, found);
 		drawMan(lives);
-		gotoxy(0, 4);
+		if (!correct)
+			gotoxy(0, 1);
+		else gotoxy(0, 4);
 		cout << "Try to guess a letter[>>] ";
 
 		cin >> letter;
@@ -210,7 +212,7 @@ void start()
 		cout << "Sorry, you lost! :(\nThe man has been executed, The word was " << word<<endl;
 		drawMan(lives);
 	}
-	gotoxy(0, 18);
+	gotoxy(0, 18)
 }
 
 
