@@ -118,6 +118,7 @@ void start()
 	}
 	if (lives)
 	{
+		gotoxy(0, 0);
 		cout << word << "\nCongrats!!! you found the word\n";
 		drawMan(lives);
 	}
