@@ -13,7 +13,7 @@ using namespace std;
 
 
 
-
+//Prints the length of the word with the letters that have been already found
 void Print_Hidden_Word(char word[], int found[])
 {
 	for (int i = 0; i < strlen(word); i++)
@@ -47,23 +47,25 @@ void start()
 	for (int i = 0; i < strlen(word); i++)
 		found[i] = 0;
 
-
-	while (lives > 0 && word[correct])
+	//While still playing...
+	while (lives > 0 && word[correct]) 
 	{
 		current = false;
 		same = false;
 		gotoxy(0, 4);
+		//Print the underlines, then draw the man.
 		Print_Hidden_Word(word, found);
 		drawMan(lives);
-		if (!correct)
+		//The user hasnt found any letter yet
+		if (!correct) 
 			gotoxy(0, 2);
 		else gotoxy(0, 3);
 		cout << "Try to guess a letter[>>] ";
-
 		cin >> letter;
 		for (int i = 0; i < strlen(word); i++)
 		{
-			if ((letter == word[i] || word[i] + 32 == letter || word[i]-32 == letter))
+			//not case sensitive
+			if (letter == word[i] || (word[i] + 32 == letter && i==0) || (word[i]-32 == letter && i!=0))
 			{
 				if (found[i] == 1)
 				{
