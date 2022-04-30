@@ -7,7 +7,7 @@ void drawMan(int lives)
 {
 	if (lives == 6)
 	{
-		for (int i = 16; i > 6; i--)
+		for (int i = 16; i > 6; i--) // the giliotine
 		{
 			gotoxy(49, i);
 			cout << "|";
@@ -27,7 +27,7 @@ void drawMan(int lives)
 		}
 
 	}
-	if (lives == 5)
+	if (lives == 5) // the face
 	{
 		drawMan(6);
 		gotoxy(56, 7);
@@ -35,7 +35,7 @@ void drawMan(int lives)
 		gotoxy(56, 8);
 		cout << "[  -  ]";
 	}
-	if (lives == 4)
+	if (lives == 4) // the body
 	{
 		drawMan(5);
 		for (int i = 11; i >= 9; i--)
@@ -44,20 +44,20 @@ void drawMan(int lives)
 			cout << "|";
 		}
 	}
-	if (lives == 3)
+	if (lives == 3) // left hand
 	{
 		drawMan(4);
 		gotoxy(58, 10);
 		cout << "/";
 
 	}
-	if (lives == 2)
+	if (lives == 2) // right hand
 	{
 		drawMan(3);
 		gotoxy(60, 10);
 		cout << "\\";
 	}
-	if (lives == 1)
+	if (lives == 1) // left leg
 	{
 		drawMan(2);
 		gotoxy(58, 12);
@@ -65,7 +65,7 @@ void drawMan(int lives)
 
 
 	}
-	if (lives == 0)
+	if (lives == 0) // right leg and dead eyes
 	{
 		drawMan(1);
 		gotoxy(60, 12);
@@ -73,5 +73,6 @@ void drawMan(int lives)
 		gotoxy(56, 7);
 		cout << "[ x x ]";
 	}
+
 
 }
