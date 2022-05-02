@@ -13,6 +13,7 @@ All the local functions were created by me.
 #include "intro.h"
 #include <iostream>
 #include <string>
+#include <conio.h>
 #include <fstream>
 #include <windows.h>
 #include <MMsystem.h>
@@ -31,6 +32,7 @@ int main()
 	PlaySound(TEXT("pumpit.wav"), NULL,SND_ASYNC);
 	int lives = 6, totalLines = 0, correct = 0, mistakes = 0;
 	char letter, buffer[30];
+	string input;
 	char* word;
 	bool current, same;
 	char mistake[6] = { 0 };
@@ -85,7 +87,7 @@ int main()
 			gotoxy(0, 2);
 		else gotoxy(0, 3);
 		cout << "Try to guess a letter[>>] ";
-		cin >> letter;
+		letter = _getch();
 		if (letter < 'A' || (letter < 'a' && letter>'Z') || letter >'z')
 		{
 			system("cls");
@@ -106,6 +108,7 @@ int main()
 				correct++;
 				found[i] = 1;
 				current = true;
+				break;
 			}
 		}
 		system("cls");
