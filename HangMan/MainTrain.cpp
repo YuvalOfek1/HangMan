@@ -90,7 +90,7 @@ int main()
 		{
 			system("cls");
 			gotoxy(0, 0);
-			cout << "Invalid charachter! try again";
+			cout << "Invalid character! try again";
 			continue;
 		}
 		for (int i = 0; i < strlen(word); i++)
