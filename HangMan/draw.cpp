@@ -31,9 +31,9 @@ void drawMan(int lives)
 	{
 		drawMan(6);
 		gotoxy(56, 7);
-		cout << "[ . . ]";
+		cout << "[ ; ; ]";
 		gotoxy(56, 8);
-		cout << "[  -  ]";
+		cout << "[ --- ]";
 	}
 	if (lives == 4) // the body
 	{
@@ -75,4 +75,17 @@ void drawMan(int lives)
 	}
 
 
+}
+
+void drawWinning()
+{
+	drawMan(1);
+	gotoxy(60, 10);
+	cout << "/";
+	gotoxy(58, 10);
+	cout << "\\";
+	gotoxy(60, 12);
+	cout << "\\";
+	gotoxy(56, 7);
+	cout << "[ ^ ^ ]";
 }

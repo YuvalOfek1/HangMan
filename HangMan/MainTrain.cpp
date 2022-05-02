@@ -1,3 +1,12 @@
+/*
+
+====================================================================================================================
+HangMan game by Yuval Ofek. I used the function tool "GotoXY" to draw the man in a specific place in the console.
+All the local functions were created by me. 
+====================================================================================================================
+
+*/
+
 #define _CRT_SECURE_NO_WARNINGS
 #include "draw.h"
 #include "gotoxy.h"
@@ -6,6 +15,7 @@
 #include <string>
 #include <fstream>
 #include <windows.h>
+#include <MMsystem.h>
 #include <cstdlib>
 #include <vector>
 #include <fstream>
@@ -18,6 +28,7 @@ bool is_in_mistakes(char mistakes[], char letter);
 
 int main()
 {
+	PlaySound(TEXT("pumpit.wav"), NULL,SND_ASYNC);
 	int lives = 6, totalLines = 0, correct = 0, mistakes = 0;
 	char letter, buffer[30];
 	char* word;
@@ -40,6 +51,7 @@ int main()
 	//Rules and game intro.
 	intro();
 	cout << "Please choose a word [>] "; cin >> buffer;
+	PlaySound(NULL, 0, 0);
 	word = new char[strlen(buffer) + 1];
 	//strcpy(word, lines[random_line]);
 	
@@ -58,6 +70,11 @@ int main()
 		//Prints the length of the word with the letters that have been already found
 		Print_Hidden_Word(word, found);
 		drawMan(lives);
+		if (lives == 1)
+		{
+			gotoxy(48, 20);
+			cout << "Be carefull! you are almost losing!!!\n";
+		}
 		gotoxy(48, 19);
 		for (int i = 0; i < strlen(mistake); i++)
 		{
@@ -69,6 +86,13 @@ int main()
 		else gotoxy(0, 3);
 		cout << "Try to guess a letter[>>] ";
 		cin >> letter;
+		if (letter < 'A' || (letter < 'a' && letter>'Z') || letter >'z')
+		{
+			system("cls");
+			gotoxy(0, 0);
+			cout << "Invalid charachter! try again";
+			continue;
+		}
 		for (int i = 0; i < strlen(word); i++)
 		{
 			//not case sensitive
@@ -88,7 +112,7 @@ int main()
 		//The letter has been already found
 		if (same)
 		{
-			cout << "You already found this letter." << endl;
+			cout << "You have already found this letter." << endl;
 			continue;
 		}
 		//The user has failed with the current letter and already has lives
@@ -113,27 +137,16 @@ int main()
 			if (word[correct])
 				cout << "Congrats, you found a letter, keep going!" << endl;
 		}
-		if (lives == 1)
-		{
-			gotoxy(48, 20);
-			cout << "Be carefull! you are almost losing!!\n";
-		}
-
 	}
 	if (lives)
 	{
 		gotoxy(0, 0);
-		cout << word << "\nCongrats!!! you found the word\n";
-		drawMan(1);
-		gotoxy(60, 10);
-		cout << "/";
-		gotoxy(58, 10);
-		cout << "\\";
-		gotoxy(60, 12);
-		cout << "\\";
+		cout << word << "\nCongratulations!!! you found the word\n";
+		drawWinning();
 	}
 	else
 	{
+		
 		cout << "Sorry, you lost! :(\nThe man has been executed, The word was " << word << endl;
 		drawMan(lives);
 	}
