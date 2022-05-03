@@ -31,7 +31,7 @@ void drawMan(int lives)
 	{
 		drawMan(6);
 		gotoxy(56, 7);
-		cout << "[ ; ; ]";
+		cout << "[ o o ]";
 		gotoxy(56, 8);
 		cout << "[ --- ]";
 	}

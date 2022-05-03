@@ -49,6 +49,7 @@ int main()
 	word = new char[len+1];
 	strcpy(word, lines[random_line].c_str());
 	
+	
 	//Rules and game intro.
 	intro();
 	PlaySound(NULL, 0, 0);
@@ -92,7 +93,7 @@ int main()
 		for (int i = 0; i < strlen(word); i++)
 		{
 			//not case sensitive
-			if (letter == word[i] || (word[i] + 32 == letter && i == 0) || (word[i] - 32 == letter && i != 0))
+			if (letter == word[i] || (word[i] + 32 == letter && i == 0) || (word[i] - 32 == letter /*&&i!=0*/))
 			{
 				if (found[i] == 1)
 				{
@@ -114,12 +115,17 @@ int main()
 		//The user has failed with the current letter and already has lives
 		if (!current)
 		{
-			if (is_in_mistakes(mistake, letter))
+			if (is_in_mistakes(mistake, letter) || is_in_mistakes(mistake, letter+32) || is_in_mistakes(mistake, letter - 32))
 			{
 				cout << "You have already chosen this letter";
 				continue;
 			}
-			else mistake[mistakes++] = letter;
+			else
+			{
+				if(letter>='a' && letter<='z')
+					mistake[mistakes++] = letter-32;
+				else mistake[mistakes++] = letter;
+			}
 			//The user has at least 2 lives.
 			if (--lives >= 1)
 			{
@@ -147,8 +153,9 @@ int main()
 		drawMan(lives);
 	}
 	//to print the final exit code etc...
+	file.close();
+	delete[]word;
 	gotoxy(0, 18);
-	//file.close();
 	return 0;
 }
 

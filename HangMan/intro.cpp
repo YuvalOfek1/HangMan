@@ -10,5 +10,4 @@ void intro()
 	cout << "\nWhen you guess a correct letter it will be added and will make you one step closer to the winning." << endl;
 	cout << "Are Your Ready ? ? ?" << endl;
 	system("pause");
-	system("cls");
 }
