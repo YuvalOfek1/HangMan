@@ -1,8 +1,9 @@
 /*
 
 ====================================================================================================================
-HangMan game by Yuval Ofek. I used the function tool "GotoXY" to draw the man in a specific place in the console.
+HangMan-Game by Yuval Ofek. I used the function tool "GotoXY" to draw the man in a specific place in the console.
 All the local functions were created by me. 
+The programs fetches a random word from the word.txt file
 ====================================================================================================================
 
 */
@@ -14,7 +15,6 @@ All the local functions were created by me.
 #include <iostream>
 #include <string>
 #include <conio.h>
-#include <fstream>
 #include <windows.h>
 #include <MMsystem.h>
 #include <cstdlib>
@@ -30,34 +30,28 @@ bool is_in_mistakes(char mistakes[], char letter);
 int main()
 {
 	PlaySound(TEXT("pumpit.wav"), NULL,SND_ASYNC);
-	int lives = 6, totalLines = 0, correct = 0, mistakes = 0;
-	char letter, buffer[30];
-	string input;
+	int lives = 6, totallines = 0, correct = 0, mistakes = 0;
+	char letter;
 	char* word;
 	bool current, same;
 	char mistake[6] = { 0 };
-	//vector<string> lines;
-	//fstream file{ "words.txt" };
-	//string line;
-	//srand(time(0));
-	//
-
-	//while (getline(file, line))
-	//{
-	//	totalLines++;
-	//	lines.push_back(line);
-	//
-	//}
-	//int random_line = rand() % totalLines;
+	vector<string> lines;
+	ifstream file{ "words.txt" };
+	string line;
+	srand(time(NULL));
+	while (getline(file, line))
+	{
+		totallines++;
+		lines.push_back(line);
+	}
+	int random_line = rand() % totallines;
+	int len = lines[random_line].length();
+	word = new char[len+1];
+	strcpy(word, lines[random_line].c_str());
 	
 	//Rules and game intro.
 	intro();
-	cout << "Please choose a word [>] "; cin >> buffer;
 	PlaySound(NULL, 0, 0);
-	word = new char[strlen(buffer) + 1];
-	//strcpy(word, lines[random_line]);
-	
-	strcpy(word, buffer);
 	system("cls");
 	int* found = new int[strlen(word)];
 	for (int i = 0; i < strlen(word); i++)
@@ -108,7 +102,6 @@ int main()
 				correct++;
 				found[i] = 1;
 				current = true;
-				break;
 			}
 		}
 		system("cls");
