@@ -69,10 +69,10 @@ int main()
 		drawMan(lives);
 		if (lives == 1)
 		{
-			gotoxy(48, 20);
+			gotoxy(48, 18);
 			cout << "Be carefull! you are almost losing!!!\n";
 		}
-		gotoxy(48, 19);
+		gotoxy(54, 14);
 		for (int i = 0; i < strlen(mistake); i++)
 		{
 			cout << mistake[i] << " ";
@@ -87,7 +87,7 @@ int main()
 		{
 			system("cls");
 			gotoxy(0, 0);
-			cout << "Invalid character! try again";
+			cout << "Invalid character! try again\nYou have " << lives << " lives left!";
 			continue;
 		}
 		for (int i = 0; i < strlen(word); i++)
@@ -109,7 +109,7 @@ int main()
 		//The letter has been already found
 		if (same)
 		{
-			cout << "You have already found this letter." << endl;
+			cout << "You have already found this letter.\nYou have " << lives << " lives left!" << endl;
 			continue;
 		}
 		//The user has failed with the current letter and already has lives
@@ -117,7 +117,7 @@ int main()
 		{
 			if (is_in_mistakes(mistake, letter) || is_in_mistakes(mistake, letter+32) || is_in_mistakes(mistake, letter - 32))
 			{
-				cout << "You have already chosen this letter";
+				cout << "You have already chosen this letter\nYou have " << lives << " lives left!";
 				continue;
 			}
 			else
@@ -130,14 +130,14 @@ int main()
 			if (--lives >= 1)
 			{
 				gotoxy(0, 0);
-				cout << "Unfortunately the word doesnt contain that letter.\nYou have " << lives << " mistakes left, Try again" << endl;
+				cout << "Unfortunately the word doesnt contain that letter.\nYou have " << lives << " lives left, Try again" << endl;
 
 			}
 		}
 		else
 		{
 			if (word[correct])
-				cout << "Congrats, you found a letter, keep going!" << endl;
+				cout << "Congrats, you found a letter, keep going!\nYou have " << lives << " lives left!" <<endl;
 		}
 	}
 	if (lives)
