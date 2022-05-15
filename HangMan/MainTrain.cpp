@@ -1,11 +1,9 @@
 /*
-
 ====================================================================================================================
 HangMan-Game by Yuval Ofek. I used the function tool "GotoXY" to draw the man in a specific place in the console.
 All the local functions were created by me. 
 The programs fetches a random word from the word.txt file
 ====================================================================================================================
-
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -25,11 +23,13 @@ using namespace std;
 
 //Prints the length of the word with the letters that have been already found
 void Print_Hidden_Word(char word[], int found[]);
+//checks if the user has already tried this letter
 bool is_in_mistakes(char mistakes[], char letter);
 
 int main()
 {
-	PlaySound(TEXT("pumpit.wav"), NULL,SND_ASYNC);
+	bool alert = false;
+	//PlaySound(TEXT("victory.wav"), NULL,SND_ASYNC);
 	int lives = 6, totallines = 0, correct = 0, mistakes = 0;
 	char letter;
 	char* word;
@@ -52,7 +52,7 @@ int main()
 	
 	//Rules and game intro.
 	intro();
-	PlaySound(NULL, 0, 0);
+	//PlaySound(NULL, 0, 0);
 	system("cls");
 	int* found = new int[strlen(word)];
 	for (int i = 0; i < strlen(word); i++)
@@ -69,8 +69,11 @@ int main()
 		drawMan(lives);
 		if (lives == 1)
 		{
-			gotoxy(48, 18);
-			cout << "Be carefull! you are almost losing!!!\n";
+			gotoxy(48, 19);
+			cout << "*** Be carefull! you are almost losing!!! ***\n";
+			if(!alert)
+				PlaySound(TEXT("Alert.wav"), NULL, SND_ASYNC);
+			alert = true;
 		}
 		gotoxy(54, 14);
 		for (int i = 0; i < strlen(mistake); i++)
@@ -130,6 +133,7 @@ int main()
 			if (--lives >= 1)
 			{
 				gotoxy(0, 0);
+				PlaySound(TEXT("Missed.wav"), NULL, SND_ASYNC);
 				cout << "Unfortunately the word doesnt contain that letter.\nYou have " << lives << " lives left, Try again" << endl;
 
 			}
@@ -142,15 +146,23 @@ int main()
 	}
 	if (lives)
 	{
+		PlaySound(TEXT("victory.wav"), NULL, SND_ASYNC);
 		gotoxy(0, 0);
 		cout << word << "\nCongratulations!!! you found the word\n";
 		drawWinning();
+		gotoxy(0, 4);
+		system("pause");
+		PlaySound(NULL, 0, 0);
 	}
 	else
 	{
+		PlaySound(TEXT("Loss.wav"), NULL, SND_ASYNC);
 		
 		cout << "Sorry, you lost! :(\nThe man has been executed, The word was " << word << endl;
 		drawMan(lives);
+		gotoxy(0, 4);
+		system("pause");
+		PlaySound(NULL, 0, 0);
 	}
 	//to print the final exit code etc...
 	file.close();
