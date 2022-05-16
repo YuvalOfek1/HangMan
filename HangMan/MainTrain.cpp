@@ -29,7 +29,6 @@ bool is_in_mistakes(char mistakes[], char letter);
 int main()
 {
 	bool alert = false;
-	//PlaySound(TEXT("victory.wav"), NULL,SND_ASYNC);
 	int lives = 6, totallines = 0, correct = 0, mistakes = 0;
 	char letter;
 	char* word;
@@ -141,7 +140,10 @@ int main()
 		else
 		{
 			if (word[correct])
-				cout << "Congrats, you found a letter, keep going!\nYou have " << lives << " lives left!" <<endl;
+			{
+				PlaySound(TEXT("Correct.wav"), NULL, SND_ASYNC);
+				cout << "Congrats, you found a letter, keep going!\nYou have " << lives << " lives left!" << endl;
+			}
 		}
 	}
 	if (lives)
@@ -168,6 +170,22 @@ int main()
 	file.close();
 	delete[]word;
 	gotoxy(0, 18);
+
+	cout << "Do you want to play again? [Y]es or [N]o?";
+	char name;
+	cin >> name;
+	if (name == 'Y' || name == 'y')
+	{
+		system("cls");
+		gotoxy(0, 0);
+		main();
+	}
+	
+	else
+	{
+		cout << "\nThanks For Playing!";
+	}
+
 	return 0;
 }
 
