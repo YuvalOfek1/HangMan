@@ -8,4 +8,4 @@ You will get the numbers of the word's letters by underlines. Any mistake will r
 
 If only 1 life is left - you will hear an alert sound and warning line, but if you mistake in this one, the game is over and you'll be asked if you want to play again. 
 
-Enjoy!
+Enjoy! :)
